@@ -66,34 +66,17 @@
       </link>
     </model>
 
-<!--
-    <include>
-      <uri>model://submarine_sinking</uri>
-      <pose>5 0 10 1.57 0 0</pose>
-    </include>
-
-    <include>
-      <uri>model://submarine</uri>
-      <pose>0 0 10 1.57 0 0</pose>
-    </include>
-
-    <include>
-      <uri>model://submarine_buoyant</uri>
-      <pose>-5 0 10 1.57 0 0</pose>
-    </include>
--->
-
     <model name="ceiling_plane">
       <static>true</static>
-      <pose>0 0 40 0 0 0</pose>
+      <pose>0 0 39.95 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
+        <!-- <collision name="collision">
           <geometry>
             <box>
               <size>200 200 .1</size>
             </box>
           </geometry>
-        </collision>
+        </collision> -->
         <visual name="visual">
           <cast_shadows>false</cast_shadows>
           <geometry>

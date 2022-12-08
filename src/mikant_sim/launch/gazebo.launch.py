@@ -84,7 +84,10 @@ def generate_launch_description():
         executable='spawn_entity.py',
         arguments=[
             '-entity', 'mikant',
-            '-topic', 'robot_description'
+            '-topic', 'robot_description',
+            '-x', '0',
+            '-y', '0',
+            '-z', '40'
         ],
         output='screen'
     )
