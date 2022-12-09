@@ -1,0 +1,16 @@
+[01m[K/home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/src/buoyancy_force_plugin.cc:7:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+    7 | [01;31m[K<<<<<<<[m[K HEAD
+      | [01;31m[K^~~~~~~[m[K
+In file included from [01m[K/home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/src/buoyancy_force_plugin.cc:13[m[K:
+[01m[K/home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/include/mikant_gazebo_plugins/buoyancy_force_plugin.hh:65:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+   65 | [01;31m[K=======[m[K
+      | [01;31m[K^~~~~~~[m[K
+[01m[K/home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/include/mikant_gazebo_plugins/buoyancy_force_plugin.hh:83:1:[m[K [01;31m[Kerror: [m[Kexpected declaration before ‘[01m[K}[m[K’ token
+   83 | [01;31m[K}[m[K
+      | [01;31m[K^[m[K
+[01m[K/home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/include/mikant_gazebo_plugins/buoyancy_force_plugin.hh:84:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+   84 | [01;31m[K>>>>>>>[m[K f2c001edb7da6da0d969ae0caa1bafb3f913181c
+      | [01;31m[K^~~~~~~[m[K
+make[2]: *** [CMakeFiles/buoyancy_force_plugin.dir/build.make:63: CMakeFiles/buoyancy_force_plugin.dir/src/buoyancy_force_plugin.cc.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/buoyancy_force_plugin.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

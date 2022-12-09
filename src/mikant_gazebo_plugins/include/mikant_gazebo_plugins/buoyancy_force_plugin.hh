@@ -60,4 +60,3 @@ namespace buoyancy_force_plugin
       gazebo::event::ConnectionPtr updateConnection;
   };
 }
-

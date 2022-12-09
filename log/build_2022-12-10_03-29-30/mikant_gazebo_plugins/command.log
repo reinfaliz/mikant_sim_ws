@@ -1,0 +1,2 @@
+Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins': /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4
+Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins' returned '2': /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4

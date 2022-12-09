@@ -97,4 +97,3 @@ namespace buoyancy_force_plugin
   // Register this plugin with the simulator
   GZ_REGISTER_MODEL_PLUGIN(BuoyancyForcePlugin)
 }
-

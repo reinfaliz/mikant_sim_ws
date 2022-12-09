@@ -1,0 +1,126 @@
+[0.222s] Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake /home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins -DCMAKE_INSTALL_PREFIX=/home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins
+[0.378s] -- The C compiler identification is GNU 9.4.0
+[0.498s] -- The CXX compiler identification is GNU 9.4.0
+[0.509s] -- Check for working C compiler: /usr/bin/cc
+[0.567s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.569s] -- Detecting C compiler ABI info
+[0.628s] -- Detecting C compiler ABI info - done
+[0.638s] -- Detecting C compile features
+[0.639s] -- Detecting C compile features - done
+[0.642s] -- Check for working CXX compiler: /usr/bin/c++
+[0.713s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.714s] -- Detecting CXX compiler ABI info
+[0.782s] -- Detecting CXX compiler ABI info - done
+[0.790s] -- Detecting CXX compile features
+[0.791s] -- Detecting CXX compile features - done
+[0.801s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.837s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.837s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.066s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+[1.070s] -- Checking for module 'bullet>=2.82'
+[1.089s] --   Found bullet, version 2.88
+[1.202s] -- Found ccd: /usr/include (found suitable version "2.0", minimum required is "2.0") 
+[1.255s] -- Found fcl: /usr/include (found suitable version "0.5.0", minimum required is "0.3.2") 
+[1.303s] -- Found assimp: /usr/include (found version "5.0.0") 
+[1.345s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[1.608s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+[1.635s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so;-lpthread (found version "3.6.1") 
+[1.643s] -- Looking for ignition-math6 -- found version 6.13.0
+[1.654s] -- Searching for dependencies of ignition-math6
+[1.657s] -- Looking for OGRE...
+[1.657s] -- OGRE_PREFIX_WATCH changed.
+[1.661s] -- Checking for module 'OGRE'
+[1.675s] --   Found OGRE, version 1.9.0
+[1.708s] -- Found Ogre Ghadamon (1.9.0)
+[1.717s] -- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so
+[1.725s] -- Looking for OGRE_Paging...
+[1.733s] -- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so
+[1.733s] -- Looking for OGRE_Terrain...
+[1.741s] -- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+[1.741s] -- Looking for OGRE_Property...
+[1.748s] -- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so
+[1.748s] -- Looking for OGRE_RTShaderSystem...
+[1.755s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so
+[1.755s] -- Looking for OGRE_Volume...
+[1.763s] -- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so
+[1.763s] -- Looking for OGRE_Overlay...
+[1.770s] -- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so
+[1.922s] -- Looking for ignition-math6 -- found version 6.13.0
+[1.926s] -- Looking for ignition-transport8 -- found version 8.3.0
+[1.926s] -- Searching for dependencies of ignition-transport8
+[1.943s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so;-lpthread (found suitable version "3.6.1", minimum required is "3") 
+[1.955s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[1.959s] -- Checking for module 'libzmq >= 4'
+[1.974s] --   Found libzmq , version 4.3.2
+[2.007s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[2.013s] -- Checking for module 'uuid'
+[2.028s] --   Found uuid, version 2.34.0
+[2.060s] -- Found UUID: TRUE  
+[2.064s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[2.064s] -- Searching for dependencies of ignition-msgs5
+[2.082s] -- Looking for ignition-math6 -- found version 6.13.0
+[2.086s] -- Checking for module 'tinyxml2'
+[2.101s] --   Found tinyxml2, version 6.2.0
+[2.135s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[2.139s] -- Looking for ignition-common3 -- found version 3.14.2
+[2.139s] -- Searching for dependencies of ignition-common3
+[2.140s] -- Looking for dlfcn.h - found
+[2.141s] -- Looking for libdl - found
+[2.142s] -- Found DL: TRUE  
+[2.150s] -- Searching for <ignition-common3> component [graphics]
+[2.156s] -- Looking for ignition-common3-graphics -- found version 3.14.2
+[2.156s] -- Searching for dependencies of ignition-common3-graphics
+[2.156s] -- Looking for ignition-math6 -- found version 6.13.0
+[2.161s] -- Looking for ignition-fuel_tools4 -- found version 4.6.0
+[2.162s] -- Searching for dependencies of ignition-fuel_tools4
+[2.228s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.68.0")  
+[2.237s] -- Checking for module 'jsoncpp'
+[2.251s] --   Found jsoncpp, version 1.7.4
+[2.283s] -- Found JSONCPP: TRUE  
+[2.292s] -- Checking for module 'libzip'
+[2.307s] --   Found libzip, version 1.5.1
+[2.340s] -- Found ZIP: TRUE  
+[2.340s] -- Looking for ignition-common3 -- found version 3.14.2
+[2.340s] -- Looking for ignition-math6 -- found version 6.13.0
+[2.340s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[2.345s] -- Found gazebo_ros: 3.5.3 (/home/thirawat/ros2_ws/install/gazebo_ros/share/gazebo_ros/cmake)
+[2.428s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.442s] -- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[2.531s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[2.557s] -- Found FastRTPS: /opt/ros/foxy/include  
+[2.649s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.727s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[2.731s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.732s] -- Found Threads: TRUE  
+[2.908s] -- Gazebo version: 11.11
+[2.941s] -- Found ament_lint_auto: 0.9.7 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.994s] -- Configuring done
+[3.054s] -- Generating done
+[3.056s] -- Build files have been written to: /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins
+[3.063s] Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake /home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins -DCMAKE_INSTALL_PREFIX=/home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins
+[3.067s] Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4
+[3.103s] [35m[1mScanning dependencies of target mikant_gazebo_plugins[0m
+[3.342s] [ 50%] [32mBuilding CXX object CMakeFiles/mikant_gazebo_plugins.dir/src/buoyancy_force_plugin.cc.o[0m
+[11.761s] [100%] [32m[1mLinking CXX shared library libmikant_gazebo_plugins.so[0m
+[12.110s] [100%] Built target mikant_gazebo_plugins
+[12.120s] Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4
+[12.152s] Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins
+[12.159s] -- Install configuration: ""
+[12.159s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/libmikant_gazebo_plugins.so
+[12.160s] -- Set runtime path of "/home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/libmikant_gazebo_plugins.so" to ""
+[12.160s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/ament_index/resource_index/package_run_dependencies/mikant_gazebo_plugins
+[12.160s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/ament_index/resource_index/parent_prefix_path/mikant_gazebo_plugins
+[12.160s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/environment/ament_prefix_path.sh
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/environment/ament_prefix_path.dsv
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/environment/path.sh
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/environment/path.dsv
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/local_setup.bash
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/local_setup.sh
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/local_setup.zsh
+[12.161s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/local_setup.dsv
+[12.162s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/package.dsv
+[12.162s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/ament_index/resource_index/packages/mikant_gazebo_plugins
+[12.162s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/cmake/mikant_gazebo_pluginsConfig.cmake
+[12.162s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/cmake/mikant_gazebo_pluginsConfig-version.cmake
+[12.162s] -- Installing: /home/thirawat/Mikant/mikant_sim_ws/install/mikant_gazebo_plugins/share/mikant_gazebo_plugins/package.xml
+[12.166s] Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/thirawat/sailboat_ws/install/warehouse_robot_spawner_pkg:/home/thirawat/sailboat_ws/install/Catamaran_Sailboat_description:/home/thirawat/ros2_ws/install/urdf_tutorial_r2d2:/home/thirawat/ros2_ws/install/turtlesim_catch_them_all:/home/thirawat/ros2_ws/install/opencv_tests:/home/thirawat/ros2_ws/install/my_py_pkg:/opt/ros/foxy /usr/bin/cmake --install /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins

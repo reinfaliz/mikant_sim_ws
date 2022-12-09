@@ -1,0 +1,11 @@
+[0.215s] Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins': /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4
+[0.236s] CMake Error at CMakeLists.txt:5:
+[0.236s]   Parse error.  Expected a command name, got unquoted argument with text
+[0.237s]   "=======".
+[0.237s] 
+[0.237s] 
+[0.237s] -- Configuring incomplete, errors occurred!
+[0.237s] See also "/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins/CMakeFiles/CMakeOutput.log".
+[0.237s] See also "/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins/CMakeFiles/CMakeError.log".
+[0.238s] make: *** [Makefile:266: cmake_check_build_system] Error 1
+[0.415s] Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins' returned '2': /usr/bin/cmake --build /home/thirawat/Mikant/mikant_sim_ws/build/mikant_gazebo_plugins -- -j4 -l4

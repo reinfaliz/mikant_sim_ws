@@ -1,0 +1,4 @@
+source;share/mikant_gazebo_plugins/local_setup.bash
+source;share/mikant_gazebo_plugins/local_setup.dsv
+source;share/mikant_gazebo_plugins/local_setup.sh
+source;share/mikant_gazebo_plugins/local_setup.zsh

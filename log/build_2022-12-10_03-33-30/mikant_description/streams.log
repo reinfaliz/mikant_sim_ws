@@ -1,0 +1,20 @@
+[0.769s] Invoking command in '/home/thirawat/Mikant/mikant_sim_ws/src/mikant_description': PYTHONPATH=/home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/prefix_override:/home/thirawat/Mikant/mikant_sim_ws/install/mikant_description/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mikant_description build --build-base /home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/build install --record /home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/install.log --single-version-externally-managed
+[0.960s] running egg_info
+[0.960s] writing ../../build/mikant_description/mikant_description.egg-info/PKG-INFO
+[0.960s] writing dependency_links to ../../build/mikant_description/mikant_description.egg-info/dependency_links.txt
+[0.960s] writing entry points to ../../build/mikant_description/mikant_description.egg-info/entry_points.txt
+[0.961s] writing requirements to ../../build/mikant_description/mikant_description.egg-info/requires.txt
+[0.961s] writing top-level names to ../../build/mikant_description/mikant_description.egg-info/top_level.txt
+[0.963s] reading manifest file '../../build/mikant_description/mikant_description.egg-info/SOURCES.txt'
+[0.963s] writing manifest file '../../build/mikant_description/mikant_description.egg-info/SOURCES.txt'
+[0.963s] running build
+[0.963s] running build_py
+[0.964s] running install
+[0.964s] running install_lib
+[0.965s] running install_data
+[0.965s] running install_egg_info
+[0.967s] removing '/home/thirawat/Mikant/mikant_sim_ws/install/mikant_description/lib/python3.8/site-packages/mikant_description-0.0.0-py3.8.egg-info' (and everything under it)
+[0.967s] Copying ../../build/mikant_description/mikant_description.egg-info to /home/thirawat/Mikant/mikant_sim_ws/install/mikant_description/lib/python3.8/site-packages/mikant_description-0.0.0-py3.8.egg-info
+[0.967s] running install_scripts
+[0.981s] writing list of installed files to '/home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/install.log'
+[0.998s] Invoked command in '/home/thirawat/Mikant/mikant_sim_ws/src/mikant_description' returned '0': PYTHONPATH=/home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/prefix_override:/home/thirawat/Mikant/mikant_sim_ws/install/mikant_description/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/mikant_description build --build-base /home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/build install --record /home/thirawat/Mikant/mikant_sim_ws/build/mikant_description/install.log --single-version-externally-managed
