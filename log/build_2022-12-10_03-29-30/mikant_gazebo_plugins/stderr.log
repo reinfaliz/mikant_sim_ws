@@ -1,9 +1,0 @@
-CMake Error in CMakeLists.txt:
-  A logical block opening on the line
-
-    /home/thirawat/Mikant/mikant_sim_ws/src/mikant_gazebo_plugins/CMakeLists.txt:48 (if)
-
-  is not closed.
-
-
-make: *** [Makefile:266: cmake_check_build_system] Error 1
