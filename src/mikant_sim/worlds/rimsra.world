@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <world name="default">
+  <world name="rimsra">
     <gui>
       <camera name="user_camera">
         <pose>25 25 45 0 0 -2.356</pose>
@@ -158,6 +158,10 @@
 
       </link>
     </model>
+
+    <!-- <plugin name="wind_pub_plugin" filename="libwind_pub_plugin.so">
+    <name>SiaO</name>
+    </plugin> -->
 
   </world>
 </sdf>
