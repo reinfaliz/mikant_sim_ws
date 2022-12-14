@@ -60,35 +60,71 @@ namespace buoyancy_force_plugin
     // Check where is the water level at
     if(this->dif_level >= 0.2)
     {
-      this->displaced_volume = this->link_volume;
+      this->top_level = 0.163334;
+      this->bottom_level = 0.036666;
     }
     else if(this->dif_level < 0.2 && this->dif_level >= 0.036666)
     {
       this->bottom_level = 0.036666;
       this->top_level = this->dif_level - this->bottom_level;
     }
-    else if(this->dif_level < 0.036666)
+    else if(this->dif_level < 0.036666 && this->dif_level > 0)
     {
-      this->bottom_level = 0.036666 - this->dif_level;
+      this->bottom_level = this->dif_level;
       this->top_level = 0;
     }
     else
     {
-      this->displaced_volume = 0;
+      this->bottom_level = 0;
+      this->top_level = 0;
     }
     
     this->displaced_volume = (0.1895489009 * this->bottom_level) + (0.218 * this->top_level);
+    
+    if(this->displaced_volume > this->link_volume)
+    {
+      this->displaced_volume = this->link_volume;
+    } 
 
     if(this->displaced_volume > 1e-6)
     {
-      ignition::math::Vector3d buoyancy_force = this->fluid_density * this->displaced_volume * model->GetWorld()->Gravity();
+    
+    double total_link_mass = 0.0;
+    ignition::math::Vector3d model_cg_position = ignition::math::Vector3d(0, 0, 0);
+    for(unsigned int i = 0; i < model->GetChildCount(); i++)
+    {
+      gazebo::physics::BasePtr temp_base = model->GetChild(i);
+      if(temp_base->HasType(gazebo::physics::Base::LINK))
+      {
+        gazebo::physics::LinkPtr temp_link = model->GetLink(temp_base->GetName());
+        double temp_link_mass = temp_link->GetInertial()->Mass();
+        model_cg_position.operator+=(temp_link->WorldCoGPose().Pos() * temp_link_mass);
+        total_link_mass = total_link_mass + temp_link_mass;
+      }
+    }
+    model_cg_position = model_cg_position/total_link_mass;
+
+
+      ignition::math::Vector3d buoyancy_force = -this->fluid_density * this->displaced_volume * model->GetWorld()->Gravity();
+    
+      ignition::math::Vector3d link_Vel = link->WorldLinearVel();
+
+      float partialMass = total_link_mass * displaced_volume / link_volume;
+      
+      //find velocity different
+      ignition::math::Vector3d rel_vel = ignition::math::Vector3d(0, 0, 0) - link_Vel; 
+
+      ignition::math::Vector3d dragforce = 1 * partialMass * rel_vel; //use linear drag = 1 
+
+      buoyancy_force += dragforce;
 
     if(buoyancy_force.Z() < 0)
     {
       buoyancy_force.Z() = 0;
     }
 
-    link->AddRelativeForce(buoyancy_force);
+
+    link->AddForceAtWorldPosition(buoyancy_force, model_cg_position);
     
     }
     
