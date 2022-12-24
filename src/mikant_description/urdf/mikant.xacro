@@ -169,6 +169,7 @@
   <plugin name="buoyancy_force_plugin" filename="libbuoyancy_force_plugin.so">
     <fluid_density>998</fluid_density>
     <fluid_level>40.0</fluid_level>
+    <linear_drag>1</linear_drag>
     <link_volume>0.042556812</link_volume>
     <link_name>base_link</link_name>
   </plugin>

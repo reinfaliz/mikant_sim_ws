@@ -13,7 +13,8 @@ namespace buoyancy_force_plugin
 {
 
   BuoyancyForcePlugin::BuoyancyForcePlugin()
-    : fluid_density(998),
+    : linear_drag(1),
+      fluid_density(998),
       fluid_level(0),
       link_pose(0, 0, 0, 0, 0, 0)
   {   
@@ -39,6 +40,10 @@ namespace buoyancy_force_plugin
     if(_sdf->HasElement("fluid_level"))
     {
       this->fluid_level = _sdf->Get<double>("fluid_level");
+    }
+    if(_sdf->HasElement("linear_drag"))
+    {
+      this->linear_drag = _sdf->Get<double>("linear_drag");
     }
 
     
@@ -114,7 +119,7 @@ namespace buoyancy_force_plugin
       //find velocity different
       ignition::math::Vector3d rel_vel = ignition::math::Vector3d(0, 0, 0) - link_Vel; 
 
-      ignition::math::Vector3d dragforce = 1 * partialMass * rel_vel; //use linear drag = 1 
+      ignition::math::Vector3d dragforce = linear_drag * partialMass * rel_vel; //use linear drag = 1 
 
       buoyancy_force += dragforce;
 

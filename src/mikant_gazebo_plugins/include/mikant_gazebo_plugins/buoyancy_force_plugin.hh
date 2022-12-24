@@ -38,6 +38,8 @@ namespace buoyancy_force_plugin
 
       int link_id;
 
+      double linear_drag;
+
       double link_volume;
       
       double fluid_density;
