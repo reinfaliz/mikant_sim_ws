@@ -5,9 +5,7 @@
 #include <ignition/math/Pose3.hh>
 #include <ignition/math/Vector3.hh>
 
-#include <map>
 #include <string>
-#include <vector>
 
 namespace buoyancy_force_plugin
 {
