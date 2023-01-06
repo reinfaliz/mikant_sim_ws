@@ -31,7 +31,7 @@ namespace lift_drag_force_plugin
     node_ = gazebo_ros::Node::Get(_sdf);
 
     this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>("rimsa_world_true_wind", 10,
-    std::bind(&ExamplePlugin::callbacksub, this, std::placeholders::_1));
+    std::bind(&LiftDragForcePlugin::callbacksub, this, std::placeholders::_1));
 
     if(_sdf->HasElement("fluid_density"))
     {
