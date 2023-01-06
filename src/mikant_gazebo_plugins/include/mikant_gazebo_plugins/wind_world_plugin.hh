@@ -2,22 +2,22 @@
 #include <gazebo/common/Event.hh>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/physics.hh>
-#include <ignition/math/Pose3.hh>
-#include <ignition/math/Vector3.hh>
 
+#include <rclcpp/rclcpp.hpp>
+#include <gazebo_ros/node.hpp>
 #include <string>
 
-namespace buoyancy_force_plugin
+namespace wind_world_plugin
 {
   /// \brief A class for storing buoyancy object properties
-  class BuoyancyForcePlugin : public gazebo::ModelPlugin
+  class WindWorldPlugin : public gazebo::WorldPlugin
   {
     public:
       /// \brief Default constructor
 
-      BuoyancyForcePlugin();
+      WindWorldPlugin();
       
-      void Load(const gazebo::physics::ModelPtr _model, const sdf::ElementPtr _sdf);
+      void Load(const gazebo::physics::WorldPtr _parent, const sdf::ElementPtr _sdf);
       
       /// \brief Associated link name            
       
@@ -34,27 +34,13 @@ namespace buoyancy_force_plugin
 
       gazebo::physics::LinkPtr link;
 
-      int link_id;
+      double true_wind_speed;
 
-      double linear_drag;
-
-      double link_volume;
+      double true_wind_angle;
       
-      double fluid_density;
-      
-      double fluid_level;
+      rclcpp::Node::SharedPtr node_;
 
-      double displaced_volume;
-
-      ignition::math::Pose3d link_pose;
-
-      double level;
-
-      double dif_level;
-
-      double bottom_level;
-
-      double top_level;
+      rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr publisher_;      
 
       // Pointer to the update event connection
       gazebo::event::ConnectionPtr updateConnection;

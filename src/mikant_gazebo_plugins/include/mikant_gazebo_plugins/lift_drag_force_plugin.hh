@@ -4,18 +4,19 @@
 #include <gazebo/physics/physics.hh>
 #include <ignition/math/Pose3.hh>
 #include <ignition/math/Vector3.hh>
-
+#include <rclcpp/rclcpp.hpp>
+#include <gazebo_ros/node.hpp>
+#include <std_msgs/msg/float64_multi_array.hpp>
 #include <string>
 
-namespace buoyancy_force_plugin
+namespace lift_drag_force_plugin
 {
-  /// \brief A class for storing buoyancy object properties
-  class BuoyancyForcePlugin : public gazebo::ModelPlugin
+  class LiftDragForcePlugin : public gazebo::ModelPlugin
   {
     public:
       /// \brief Default constructor
 
-      BuoyancyForcePlugin();
+      LiftDragForcePlugin();
       
       void Load(const gazebo::physics::ModelPtr _model, const sdf::ElementPtr _sdf);
       
@@ -34,27 +35,27 @@ namespace buoyancy_force_plugin
 
       gazebo::physics::LinkPtr link;
 
+      rclcpp::Node::SharedPtr node_;
+
+      rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr sub_;
+
+      double fluid_density;
+
+      double foil_area;
+
       int link_id;
 
-      double linear_drag;
-
-      double link_volume;
+      double cla;
       
-      double fluid_density;
-      
-      double fluid_level;
+      double cda0;
 
-      double displaced_volume;
+      double cda;
 
-      ignition::math::Pose3d link_pose;
+      ignition::math::Vector3d center_of_pressure;
 
-      double level;
+      double init_angle_of_attack;
 
-      double dif_level;
-
-      double bottom_level;
-
-      double top_level;
+      double span;
 
       // Pointer to the update event connection
       gazebo::event::ConnectionPtr updateConnection;
