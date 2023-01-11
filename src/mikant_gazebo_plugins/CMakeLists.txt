@@ -25,9 +25,9 @@ find_package(rclcpp REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 add_library(buoyancy_force_plugin SHARED src/buoyancy_force_plugin.cc)
-add_library(publisher_node SHARED src/publisher_node.cc)
+add_library(lift_drag_force_plugin SHARED src/lift_drag_force_plugin.cc)
 add_library(wind_world_plugin SHARED src/wind_world_plugin.cc)
-add_library(subscribe SHARED src/subscribe.cc)
+
 
 
 target_include_directories(buoyancy_force_plugin PUBLIC
@@ -36,11 +36,11 @@ target_include_directories(buoyancy_force_plugin PUBLIC
 
   ament_target_dependencies(buoyancy_force_plugin "gazebo_ros" "rclcpp")
 
-target_include_directories(publisher_node PUBLIC
+target_include_directories(lift_drag_force_plugin PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
-  ament_target_dependencies(publisher_node "gazebo_ros" "rclcpp")
+  ament_target_dependencies(lift_drag_force_plugin "gazebo_ros" "rclcpp")
 
 target_include_directories(wind_world_plugin PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -48,16 +48,11 @@ target_include_directories(wind_world_plugin PUBLIC
 
   ament_target_dependencies(wind_world_plugin "gazebo_ros" "rclcpp")
 
-target_include_directories(subscribe PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
 
-  ament_target_dependencies(subscribe "gazebo_ros" "rclcpp")
 
 install(TARGETS buoyancy_force_plugin DESTINATION share/${PROJECT_NAME})
-install(TARGETS publisher_node DESTINATION share/${PROJECT_NAME})
+install(TARGETS lift_drag_force_plugin DESTINATION share/${PROJECT_NAME})
 install(TARGETS wind_world_plugin DESTINATION share/${PROJECT_NAME})
-install(TARGETS subscribe DESTINATION share/${PROJECT_NAME})
 
 
 if(BUILD_TESTING)
