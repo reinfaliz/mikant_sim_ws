@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <world name="default">
+  <world name="rimsa_world">
     <gui>
       <camera name="user_camera">
         <pose>25 25 45 0 0 -2.356</pose>
@@ -158,6 +158,11 @@
 
       </link>
     </model>
+
+    <plugin name="wind_world_plugin" filename="libwind_world_plugin.so">
+      <true_wind_speed>10</true_wind_speed>
+      <true_wind_angle>5</true_wind_angle>
+      </plugin>
 
   </world>
 </sdf>

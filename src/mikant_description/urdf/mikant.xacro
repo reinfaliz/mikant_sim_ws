@@ -175,4 +175,8 @@
   </plugin>
 </gazebo>
 
+<gazebo>
+  <plugin name="subscribe" filename="libsubscribe.so">
+  </plugin>
+</gazebo>
 </robot>
