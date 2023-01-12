@@ -5,7 +5,6 @@
 #include <gazebo/common/Events.hh>
 #include <ignition/math/Vector3.hh>
 #include <gazebo_ros/node.hpp>
-#include <math.h>
 #include <ignition/math/Matrix3.hh>
 
 #include <rclcpp/rclcpp.hpp>
@@ -99,6 +98,9 @@ namespace lift_drag_force_plugin
 
     double v_awu = true_fluid_speed*cos(true_fluid_angle - psi) - u_b + (r_b * center_of_pressure.Y());
     double v_awv =true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z()); 
+
+    double alpha_aw = atan2(v_awv - v_awu);
+    double v_aw = sqrt((v_awu*v_awu) + (v_awv*v_awv));
 
   }
   
