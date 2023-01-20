@@ -26,7 +26,9 @@ namespace lift_drag_force_plugin
     this->model = _model;
     this->world = this->model->GetWorld();
     this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
+    this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
     this->link = model->GetLink(link_name);
+    this->joint = model->GetJoint(joint_name);
     this->link_id = link->GetId();
 
     node_ = gazebo_ros::Node::Get(_sdf);
@@ -58,9 +60,9 @@ namespace lift_drag_force_plugin
     {
       this->center_of_pressure = _sdf->Get<double>("center_of_pressure");
     }
-    if(_sdf->HasElement("init_angle_of_attack"))
+    if(_sdf->HasElement("init_actuator_angle"))
     {
-      this->init_angle_of_attack = _sdf->Get<double>("init_angle_of_attack");
+      this->init_actuator_angle = _sdf->Get<double>("init_actuator_angle");
     }
     if(_sdf->HasElement("span"))
     {
@@ -78,20 +80,25 @@ namespace lift_drag_force_plugin
   this->true_fluid_angle = msg->data[1];
   }
 
-
+  ignition::math::Vector3d LiftDragForcePlugin::RotateX(const ignition::math::Vector3d Ro)
+  {
+    ignition::math::Vector3d V = ignition::math::Vector3d(1, -1, -1);
+    ignition::math::Vector3d Result = V * Ro;
+    return Result ;
+  }
 
   // Called by the world update start event
   void LiftDragForcePlugin::OnUpdate()
   {    
-    ignition::math::Pose3d Pose = this->link->WorldPose();
-    ignition::math::Vector3d VelLinearB = this->link->RelativeLinearVel();
-    ignition::math::Vector3d VelAngularB = this->link->RelativeAngularVel();
+    ignition::math::Vector3d PoseOrien = RotateX(this->link->WorldPose().Rot().Euler());
+    ignition::math::Vector3d VelLinearB = RotateX(this->link->RelativeLinearVel());
+    ignition::math::Vector3d VelAngularB = RotateX(this->link->RelativeAngularVel());
 
     double u_b = VelLinearB.X();
     double v_b = VelLinearB.Y();
 
-    double phi = Pose.Roll();
-    double psi = Pose.Yaw();
+    double phi = PoseOrien.X();
+    double psi = PoseOrien.Z();
 
     double p_b = VelAngularB.X();
     double r_b = VelAngularB.Z();
@@ -99,8 +106,36 @@ namespace lift_drag_force_plugin
     double v_awu = true_fluid_speed*cos(true_fluid_angle - psi) - u_b + (r_b * center_of_pressure.Y());
     double v_awv =true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z()); 
 
-    double alpha_aw = atan2(v_awv - v_awu);
+    double alpha_aw =  atan2(v_awv ,-v_awu);
     double v_aw = sqrt((v_awu*v_awu) + (v_awv*v_awv));
+
+    double delta_s = this->joint->Position(0);
+
+    double angle_of_attack = alpha_aw - delta_s + init_actuator_angle;
+
+    double cl = cla *  sin(2 * angle_of_attack);
+    double lift_force = 0.5 * fluid_density * foil_area * v_aw * v_aw * cl;
+
+    double cdi = (cl * cl * foil_area)/(M_PI * span * span);
+    double cd = cda0 + (cda * sin(angle_of_attack) * sin(angle_of_attack)) + cdi;
+    double drag_force = 0.5 * fluid_density * foil_area * v_aw  * v_aw * cd;
+
+
+    double total_link_mass = 0.0;
+    ignition::math::Vector3d model_cg_position = ignition::math::Vector3d(0, 0, 0);
+    for(unsigned int i = 0; i < model->GetChildCount(); i++)
+    {
+      gazebo::physics::BasePtr temp_base = model->GetChild(i);
+      if(temp_base->HasType(gazebo::physics::Base::LINK))
+      {
+        gazebo::physics::LinkPtr temp_link = model->GetLink(temp_base->GetName());
+        double temp_link_mass = temp_link->GetInertial()->Mass();
+        model_cg_position.operator+=(temp_link->WorldCoGPose().Pos() * temp_link_mass);
+        total_link_mass = total_link_mass + temp_link_mass;
+      }
+    }
+    model_cg_position = model_cg_position/total_link_mass;
+
 
   }
   

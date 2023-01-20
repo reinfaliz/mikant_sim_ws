@@ -19,8 +19,11 @@ namespace lift_drag_force_plugin
       LiftDragForcePlugin();
       
       void Load(const gazebo::physics::ModelPtr _model, const sdf::ElementPtr _sdf);
-      
-      /// \brief Associated link name            
+
+      void callbacksub(const std_msgs::msg::Float64MultiArray::SharedPtr msg);
+
+      ignition::math::Vector3d RotateX(const ignition::math::Vector3d Ro);
+      /// \brief Associated link name        
       
     private:
       void OnUpdate();
@@ -33,7 +36,11 @@ namespace lift_drag_force_plugin
 
       std::string link_name;
 
+      std::string joint_name;
+
       gazebo::physics::LinkPtr link;
+
+      gazebo::physics::JointPtr joint;
 
       rclcpp::Node::SharedPtr node_;
 
@@ -53,9 +60,13 @@ namespace lift_drag_force_plugin
 
       ignition::math::Vector3d center_of_pressure;
 
-      double init_angle_of_attack;
+      double init_actuator_angle;
 
       double span;
+
+      double true_fluid_speed;
+
+      double true_fluid_angle;
 
       // Pointer to the update event connection
       gazebo::event::ConnectionPtr updateConnection;
