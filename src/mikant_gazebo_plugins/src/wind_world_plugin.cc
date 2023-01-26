@@ -62,8 +62,5 @@ namespace wind_world_plugin
     
   // Register this plugin with the simulator
   GZ_REGISTER_WORLD_PLUGIN(WindWorldPlugin)
-}qa
-
-qa
- qa!
+}
 
