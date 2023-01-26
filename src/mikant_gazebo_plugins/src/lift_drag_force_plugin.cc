@@ -12,7 +12,7 @@
 #include <string>
 
 namespace lift_drag_force_plugin
-
+{
   LiftDragForcePlugin::LiftDragForcePlugin()
     : fluid_density(1.225),
       center_of_pressure(0, 0, 0)
