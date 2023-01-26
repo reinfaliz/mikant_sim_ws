@@ -26,6 +26,7 @@ find_package(rclcpp REQUIRED)
 
 add_library(buoyancy_force_plugin SHARED src/buoyancy_force_plugin.cc)
 add_library(wind_world_plugin SHARED src/wind_world_plugin.cc)
+add_library(lift_drag_force_plugin SHARED src/subscribe.cc)
 
 
 target_include_directories(buoyancy_force_plugin PUBLIC
@@ -42,10 +43,15 @@ target_include_directories(wind_world_plugin PUBLIC
 
   ament_target_dependencies(wind_world_plugin "gazebo_ros" "rclcpp")
 
+target_include_directories(lift_drag_force_plugin PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
 
+  ament_target_dependencies(lift_drag_force_plugin "gazebo_ros" "rclcpp")
 
 install(TARGETS buoyancy_force_plugin DESTINATION share/${PROJECT_NAME})
 install(TARGETS wind_world_plugin DESTINATION share/${PROJECT_NAME})
+install(TARGETS lift_drag_force_plugin DESTINATION share/${PROJECT_NAME})
 
 
 if(BUILD_TESTING)
