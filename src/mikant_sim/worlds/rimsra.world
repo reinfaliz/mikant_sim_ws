@@ -1,9 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-<<<<<<< HEAD
-=======
 
->>>>>>> 6c0ca86cc3c2d1f37c7644f969c021d773061f0d
   <world name="rimsra_world">
     <gui>
       <camera name="user_camera">
