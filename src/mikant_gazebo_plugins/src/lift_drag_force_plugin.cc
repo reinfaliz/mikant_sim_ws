@@ -136,7 +136,12 @@ namespace lift_drag_force_plugin
     }
     model_cg_position = model_cg_position/total_link_mass;
 
+    double lift_drag_world_x = lift_force *(cos(-psi) + sin(-psi)*cos(alpha_aw)) + drag_force * (sin(-psi) * sin(alpha_aw) - cos(alpha_aw) * cos(-psi));
+    double lift_drag_world_y = -(lift_force * (cos(alpha_aw) * cos(-psi) - sin(alpha_aw) * sin(-psi)) + drag_force * (cos(alpha_aw) * sin(-psi) + sin(alpha_aw) * cos(-psi)));
 
+    ignition::math::Vector3d lift_drag_world = ignition::math::Vector3d(lift_drag_world_x, lift_drag_world_y, 0);
+
+    link->AddForceAtWorldPosition(lift_drag_world,center_of_pressure);
   }
   
 
