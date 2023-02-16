@@ -27,13 +27,18 @@ namespace lift_drag_force_plugin
     this->world = this->model->GetWorld();
     this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
     this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
+
+    std::string world_name = this->world->Name();
+    std::string topic_name = world_name + "/sub_world_topic";
+    std::string model_name = this->model->GetName();
+
     this->link = model->GetLink(link_name);
     this->joint = model->GetJoint(joint_name);
     this->link_id = link->GetId();
 
-    node_ = gazebo_ros::Node::Get(_sdf);
+    node_ = gazebo_ros::Node::make_shared(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
 
-    this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>("rimsa_world_true_wind", 10,
+    this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name, 10,
     std::bind(&LiftDragForcePlugin::callbacksub, this, std::placeholders::_1));
 
     if(_sdf->HasElement("fluid_density"))
