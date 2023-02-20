@@ -2,29 +2,23 @@
 #include <gazebo/common/Event.hh>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/physics.hh>
-#include <ignition/math/Pose3.hh>
 #include <ignition/math/Vector3.hh>
 
 #include <map>
 #include <string>
 #include <vector>
 
-namespace buoyancy_force_plugin
+namespace three_dof_setting_plugin
 {
-  class BuoyancyForcePlugin : public gazebo::ModelPlugin
+  class ThreeDOFSettingPlugin : public gazebo::ModelPlugin
   {
     public:
-      BuoyancyForcePlugin();
+      ThreeDOFSettingPlugin();
       void Load(const gazebo::physics::ModelPtr _model, const sdf::ElementPtr _sdf);
 
     private:
       gazebo::physics::ModelPtr model;
-      gazebo::physics::WorldPtr world;
-      std::string link_name;
-      gazebo::physics::LinkPtr link;
-      double fluid_density;
-      double fluid_level;
-      double link_volume;
+      bool enable;
       gazebo::event::ConnectionPtr updateConnection;
       void OnUpdate();
   };
