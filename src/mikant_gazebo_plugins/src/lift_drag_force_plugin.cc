@@ -95,9 +95,9 @@ namespace lift_drag_force_plugin
   // Called by the world update start event
   void LiftDragForcePlugin::OnUpdate()
   {    
-    ignition::math::Vector3d PoseOrien = RotateX(this->link->WorldPose().Rot().Euler());
-    ignition::math::Vector3d VelLinearB = RotateX(this->link->RelativeLinearVel());
-    ignition::math::Vector3d VelAngularB = RotateX(this->link->RelativeAngularVel());
+    ignition::math::Vector3d PoseOrien = RotateX(this->model->WorldPose().Rot().Euler());
+    ignition::math::Vector3d VelLinearB = RotateX(this->model->RelativeLinearVel());
+    ignition::math::Vector3d VelAngularB = RotateX(this->model->RelativeAngularVel());
 
     double u_b = VelLinearB.X();
     double v_b = VelLinearB.Y();
