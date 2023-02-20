@@ -68,10 +68,13 @@ namespace heading_pid_controller_plugin
   // Called by the world update start event
   void HeadingPIDControllerPlugin::OnUpdate()
   {    
+    
+    error = psi;
+
     auto Rudder_Angle = std_msgs::msg::Float64();
 
     // Set the data for the message
-    Rudder_Angle.data = 1;
+    Rudder_Angle.data = p_gain*error;
     // Publish the message
     publisher_->publish(Rudder_Angle);
     

@@ -63,6 +63,8 @@ namespace heading_pid_controller_plugin
       double p;
 
       double r;
+
+      double error;
       
       rclcpp::Node::SharedPtr node_;
 
