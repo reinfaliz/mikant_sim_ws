@@ -167,10 +167,5 @@
       </plugin>
 
 
-    <plugin name="wind_world_plugin" filename="libwind_world_plugin.so">
-      <true_wind_speed>10</true_wind_speed>
-      <true_wind_angle>5</true_wind_angle>
-      </plugin>
-
   </world>
 </sdf>
