@@ -174,10 +174,10 @@
     <link_name>base_link</link_name>
   </plugin>
 
-  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
     <link_name>wingsail_1</link_name>
     <sub_world_topic>true_wind</sub_world_topic>
-  </plugin>
+  </plugin> -->
 
 </gazebo>
 

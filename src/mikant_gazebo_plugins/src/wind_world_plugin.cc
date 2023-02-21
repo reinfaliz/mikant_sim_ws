@@ -21,7 +21,9 @@ namespace wind_world_plugin
 
   void WindWorldPlugin::Load(gazebo::physics::WorldPtr _parent, sdf::ElementPtr _sdf)
   {
-    
+    std::string world_name = _parent->Name();
+    std::string topic_name = world_name + "/true_wind" ;
+
     if(_sdf->HasElement("true_wind_speed"))
     {
       this->true_wind_speed = _sdf->Get<double>("true_wind_speed");
@@ -31,11 +33,11 @@ namespace wind_world_plugin
       this->true_wind_angle = _sdf->Get<double>("true_wind_angle");
     }
 
-    node_ = gazebo_ros::Node::Get(_sdf);
+    node_ = gazebo_ros::Node::make_shared("wind_world_plugin_" + world_name);
     RCLCPP_INFO(node_->get_logger(), "Loading World Wind Plugin");
     
     // Set up a update event callback
-    this->publisher_ = this->node_->create_publisher<std_msgs::msg::Float64MultiArray>("rimsa_world_true_wind", 10);
+    this->publisher_ = this->node_->create_publisher<std_msgs::msg::Float64MultiArray>(topic_name, 10);
 
     
     // Listen to the update event. This event is broadcast every
@@ -61,3 +63,4 @@ namespace wind_world_plugin
   // Register this plugin with the simulator
   GZ_REGISTER_WORLD_PLUGIN(WindWorldPlugin)
 }
+
