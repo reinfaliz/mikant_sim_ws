@@ -73,7 +73,8 @@ namespace revolute_joint_setting_plugin
   void RevoluteJointSettingPlugin::OnUpdate()
   {
     // Bound the joint setting
-    double final_joint_setting = this->joint_setting;
+    // double final_joint_setting = this->joint_setting;
+    double final_joint_setting = 120;
     if(final_joint_setting > this->joint_setting_upper_limit)
     {
       final_joint_setting = this->joint_setting_upper_limit;
