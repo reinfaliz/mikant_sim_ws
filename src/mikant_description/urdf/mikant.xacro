@@ -216,18 +216,19 @@
     <link_name>base_link</link_name>
   </plugin>
 
-  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
     <link_name>wingsail_1</link_name>
+    <joint_name>wingsail_joint</joint_name>
     <sub_world_topic>true_wind</sub_world_topic>
-  </plugin>
+  </plugin> -->
 
-  <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+  <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
     <joint_setting_lower_limit>-12000</joint_setting_lower_limit>
     <joint_setting_upper_limit>12000</joint_setting_upper_limit>
     <joint_mode>1</joint_mode>
     <joint_name>left_propeller_joint</joint_name>
     <sub_joint_topic>left_propeller_controller</sub_joint_topic>
-  </plugin>
+  </plugin> -->
 
   <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
     <joint_setting_lower_limit>-12000</joint_setting_lower_limit>
@@ -239,6 +240,15 @@
 
   <plugin name="three_dof_setting_plugin" filename="libthree_dof_setting_plugin.so">
     <enable>true</enable>
+  </plugin>
+
+  <plugin name="sailboat_states_plugin" filename="libsailboat_states_plugin.so">
+    <rudder_joint_name>rudder_joint</rudder_joint_name>
+    <sail_joint_name>wingsail_joint</sail_joint_name>
+    <tail_joint_name>tail_joint</tail_joint_name>
+    <left_propeller_joint_name>left_propeller_joint</left_propeller_joint_name>
+    <right_propeller_joint_name>right_propeller_joint</right_propeller_joint_name>
+    <convert_to_deg>true</convert_to_deg>
   </plugin>
 </gazebo>
 
