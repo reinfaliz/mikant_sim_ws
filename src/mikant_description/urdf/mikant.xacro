@@ -216,11 +216,19 @@
     <link_name>base_link</link_name>
   </plugin>
 
-  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>1.225</fluid_density>
+    <foil_area>0.675</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>1.8</span>
+    <center_of_pressure>0.02651 0 0.9</center_of_pressure>
     <link_name>wingsail_1</link_name>
     <joint_name>wingsail_joint</joint_name>
     <sub_world_topic>true_wind</sub_world_topic>
-  </plugin> -->
+  </plugin>
 
   <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
     <joint_setting_lower_limit>-12000</joint_setting_lower_limit>

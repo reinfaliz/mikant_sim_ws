@@ -163,7 +163,7 @@
     <plugin name="wind_world_plugin" filename="libwind_world_plugin.so">
       <true_wind_speed>3.0</true_wind_speed>
       <true_wind_angle>0.0</true_wind_angle>
-      </plugin>
+    </plugin>
 
 
   </world>

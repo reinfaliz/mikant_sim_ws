@@ -33,7 +33,7 @@ namespace wind_world_plugin
       this->true_wind_angle = _sdf->Get<double>("true_wind_angle");
     }
 
-    node_ = gazebo_ros::Node::make_shared("wind_world_plugin_" + world_name);
+    node_ = gazebo_ros::Node::CreateWithArgs("wind_world_plugin_" + world_name);
     RCLCPP_INFO(node_->get_logger(), "Loading World Wind Plugin");
     
     // Set up a update event callback

@@ -16,7 +16,9 @@ namespace lift_drag_force_plugin
 {
   LiftDragForcePlugin::LiftDragForcePlugin()
     : fluid_density(1.225),
-      center_of_pressure(0, 0, 0)
+      center_of_pressure(ignition::math::Vector3d(0, 0, 0)),
+      true_fluid_speed(0.0),
+      true_fluid_angle(0.0)
   {   
   }
 
@@ -34,9 +36,8 @@ namespace lift_drag_force_plugin
 
     this->link = model->GetLink(link_name);
     this->joint = model->GetJoint(joint_name);
-    this->link_id = link->GetId();
 
-    node_ = gazebo_ros::Node::make_shared(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
+    node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
 
     this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name, 10,
     std::bind(&LiftDragForcePlugin::callbacksub, this, std::placeholders::_1));
@@ -63,7 +64,7 @@ namespace lift_drag_force_plugin
     }
     if(_sdf->HasElement("center_of_pressure"))
     {
-      this->center_of_pressure = _sdf->Get<double>("center_of_pressure");
+      this->center_of_pressure = _sdf->Get<ignition::math::Vector3d>("center_of_pressure");
     }
     if(_sdf->HasElement("init_actuator_angle"))
     {
@@ -81,8 +82,8 @@ namespace lift_drag_force_plugin
 
   void LiftDragForcePlugin::callbacksub(const std_msgs::msg::Float64MultiArray::SharedPtr msg)
   {
-  this->true_fluid_speed = msg->data[0];
-  this->true_fluid_angle = msg->data[1];
+    this->true_fluid_speed = msg->data[0];
+    this->true_fluid_angle = msg->data[1];
   }
 
   ignition::math::Vector3d LiftDragForcePlugin::RotateX(const ignition::math::Vector3d Ro)
@@ -125,21 +126,20 @@ namespace lift_drag_force_plugin
     double cd = cda0 + (cda * sin(angle_of_attack) * sin(angle_of_attack)) + cdi;
     double drag_force = 0.5 * fluid_density * foil_area * v_aw  * v_aw * cd;
 
-
-    double total_link_mass = 0.0;
-    ignition::math::Vector3d model_cg_position = ignition::math::Vector3d(0, 0, 0);
-    for(unsigned int i = 0; i < model->GetChildCount(); i++)
-    {
-      gazebo::physics::BasePtr temp_base = model->GetChild(i);
-      if(temp_base->HasType(gazebo::physics::Base::LINK))
-      {
-        gazebo::physics::LinkPtr temp_link = model->GetLink(temp_base->GetName());
-        double temp_link_mass = temp_link->GetInertial()->Mass();
-        model_cg_position.operator+=(temp_link->WorldCoGPose().Pos() * temp_link_mass);
-        total_link_mass = total_link_mass + temp_link_mass;
-      }
-    }
-    model_cg_position = model_cg_position/total_link_mass;
+    // double total_link_mass = 0.0;
+    // ignition::math::Vector3d model_cg_position = ignition::math::Vector3d(0, 0, 0);
+    // for(unsigned int i = 0; i < model->GetChildCount(); i++)
+    // {
+    //   gazebo::physics::BasePtr temp_base = model->GetChild(i);
+    //   if(temp_base->HasType(gazebo::physics::Base::LINK))
+    //   {
+    //     gazebo::physics::LinkPtr temp_link = model->GetLink(temp_base->GetName());
+    //     double temp_link_mass = temp_link->GetInertial()->Mass();
+    //     model_cg_position.operator+=(temp_link->WorldCoGPose().Pos() * temp_link_mass);
+    //     total_link_mass = total_link_mass + temp_link_mass;
+    //   }
+    // }
+    // model_cg_position = model_cg_position/total_link_mass;
 
     double lift_drag_world_x = lift_force *(cos(-psi) + sin(-psi)*cos(alpha_aw)) + drag_force * (sin(-psi) * sin(alpha_aw) - cos(alpha_aw) * cos(-psi));
     double lift_drag_world_y = -(lift_force * (cos(alpha_aw) * cos(-psi) - sin(alpha_aw) * sin(-psi)) + drag_force * (cos(alpha_aw) * sin(-psi) + sin(alpha_aw) * cos(-psi)));
