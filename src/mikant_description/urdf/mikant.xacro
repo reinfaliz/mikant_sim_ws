@@ -230,6 +230,11 @@
     <sub_world_topic>true_wind</sub_world_topic>
   </plugin>
 
+  <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
+    <damping_coef>1</damping_coef>
+    <link_name>base_link</link_name>
+  </plugin>
+
   <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
     <joint_setting_lower_limit>-12000</joint_setting_lower_limit>
     <joint_setting_upper_limit>12000</joint_setting_upper_limit>

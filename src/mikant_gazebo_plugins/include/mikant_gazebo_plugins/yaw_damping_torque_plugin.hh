@@ -1,4 +1,4 @@
-include <gazebo/common/common.hh>
+#include <gazebo/common/common.hh>
 #include <gazebo/common/Event.hh>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/physics.hh>
@@ -28,12 +28,12 @@ namespace yaw_damping_torque_plugin
       gazebo::physics::ModelPtr model;
       
       //Retrieved when the model is loaded.
-      physics::ModelPtr model;
-    	physics::linkPtr link;
-	double damping_coef;
-	double world_frame;
-	double phi_dot;
-	double torque;
+      std::string link_name;
+    	gazebo::physics::LinkPtr link;
+	    double damping_coef;
+	    ignition::math::Vector3d world_frame;
+	    double phi_dot;
+	    double torque;
 
       // Pointer to the update event connection
       gazebo::event::ConnectionPtr updateConnection;
