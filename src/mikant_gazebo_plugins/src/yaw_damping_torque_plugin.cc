@@ -37,8 +37,7 @@ namespace yaw_damping_torque_plugin
       world_frame = model->WorldAngularVel(); //WorldAngularVel() is function.
       phi_dot = (-1)*world_frame.Z(); //get the member of z in world_frame matrix.
       this->torque = damping_coef*phi_dot*abs(phi_dot); //calculate torque
-      this->link->AddRelativeTorque(ignition::math::Vector3d(0,0,(-1)*torque)); //change to original axis.
-
+      this->link->AddRelativeTorque(ignition::math::Vector3d(0,0,torque)); //change to original axis.
     }
 
   // Register this plugin with the simulator

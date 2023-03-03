@@ -176,10 +176,10 @@
   <origin xyz="-0.455749 0.0 -0.100079" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="rudder_1"/>
-  <axis xyz="0.0 0.0 -1.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
 </joint>
 
-<joint name="wingsail_joint" type="continuous">
+<!-- <joint name="wingsail_joint" type="continuous">
   <origin xyz="0.026151 0.0 0.021021" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="wingsail_1"/>
@@ -191,6 +191,22 @@
   <parent link="wingsail_1"/>
   <child link="tail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
+</joint> -->
+
+<joint name="wingsail_joint" type="revolute">
+  <origin xyz="0.026151 0.0 0.021021" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wingsail_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
+</joint>
+
+<joint name="tail_joint" type="continuous">
+  <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
+  <parent link="wingsail_1"/>
+  <child link="tail_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
 </joint>
 
 <joint name="left_propeller_joint" type="continuous">
@@ -231,7 +247,7 @@
   </plugin>
 
   <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
-    <damping_coef>1</damping_coef>
+    <damping_coef>10</damping_coef>
     <link_name>base_link</link_name>
   </plugin>
 

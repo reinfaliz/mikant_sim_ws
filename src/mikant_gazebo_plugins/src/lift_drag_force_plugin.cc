@@ -103,6 +103,8 @@ namespace lift_drag_force_plugin
     double u_b = VelLinearB.X();
     double v_b = VelLinearB.Y();
 
+    
+
     double phi = PoseOrien.X();
     double psi = PoseOrien.Z();
 
@@ -110,7 +112,7 @@ namespace lift_drag_force_plugin
     double r_b = VelAngularB.Z();
 
     double v_awu = true_fluid_speed*cos(true_fluid_angle - psi) - u_b + (r_b * center_of_pressure.Y());
-    double v_awv =true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z()); 
+    double v_awv = true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z()); 
 
     double alpha_aw =  atan2(v_awv ,-v_awu);
     double v_aw = sqrt((v_awu*v_awu) + (v_awv*v_awv));
@@ -141,14 +143,13 @@ namespace lift_drag_force_plugin
     // }
     // model_cg_position = model_cg_position/total_link_mass;
 
-    double lift_drag_world_x = lift_force *(cos(-psi) + sin(-psi)*cos(alpha_aw)) + drag_force * (sin(-psi) * sin(alpha_aw) - cos(alpha_aw) * cos(-psi));
+    double lift_drag_world_x = lift_force *(cos(-psi)*sin(alpha_aw) + sin(-psi)*cos(alpha_aw)) + drag_force * (sin(-psi) * sin(alpha_aw) - cos(alpha_aw) * cos(-psi));
     double lift_drag_world_y = -(lift_force * (cos(alpha_aw) * cos(-psi) - sin(alpha_aw) * sin(-psi)) + drag_force * (cos(alpha_aw) * sin(-psi) + sin(alpha_aw) * cos(-psi)));
 
     ignition::math::Vector3d lift_drag_world = ignition::math::Vector3d(lift_drag_world_x, lift_drag_world_y, 0);
 
     link->AddForceAtWorldPosition(lift_drag_world,center_of_pressure);
   }
-  
 
   // Register this plugin with the simulator
   GZ_REGISTER_MODEL_PLUGIN(LiftDragForcePlugin)
