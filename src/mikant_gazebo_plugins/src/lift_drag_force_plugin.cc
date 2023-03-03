@@ -29,9 +29,10 @@ namespace lift_drag_force_plugin
     this->world = this->model->GetWorld();
     this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
     this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
+    this->sub_world_topic = _sdf->GetElement("sub_world_topic")->Get<std::string>();
 
     std::string world_name = this->world->Name();
-    std::string topic_name = world_name + "/true_wind";
+    std::string topic_name = world_name + sub_world_topic;
     std::string model_name = this->model->GetName();
 
     this->link = model->GetLink(link_name);
