@@ -30,16 +30,7 @@ namespace lift_drag_force_plugin
     this->world = this->model->GetWorld();
     this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
 
-    std::string world_name = this->world->Name();
-    std::string topic_name = world_name + "/true_wind";
-    std::string model_name = this->model->GetName();
-
     this->link = model->GetLink(link_name);
-
-    node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
-
-    this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name, 10,
-    std::bind(&LiftDragForcePlugin::callbacksub, this, std::placeholders::_1));
 
     if(_sdf->HasElement("fluid_density"))
     {
@@ -77,6 +68,21 @@ namespace lift_drag_force_plugin
     {
       this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
       this->joint = model->GetJoint(joint_name);
+    }
+    if(_sdf->HasElement("sub_world_topic"))
+    {
+      this->sub_world_topic = _sdf->GetElement("sub_world_topic")->Get<std::string>();
+    }
+
+    if(this->sub_world_topic != "")
+    {
+      std::string world_name = this->world->Name();
+      std::string topic_name = world_name + "/" + this->sub_world_topic;
+      std::string model_name = this->model->GetName();
+      
+      this->node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
+      this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name, 10,
+    std::bind(&LiftDragForcePlugin::callbacksub, this, std::placeholders::_1));
     }
 
     // Listen to the update event. This event is broadcast every
@@ -137,27 +143,16 @@ namespace lift_drag_force_plugin
     double cd = cda0 + (cda * sin(angle_of_attack) * sin(angle_of_attack)) + cdi;
     double drag_force = 0.5 * fluid_density * foil_area * v_aw  * v_aw * cd;
 
-    // double total_link_mass = 0.0;
-    // ignition::math::Vector3d model_cg_position = ignition::math::Vector3d(0, 0, 0);
-    // for(unsigned int i = 0; i < model->GetChildCount(); i++)
-    // {
-    //   gazebo::physics::BasePtr temp_base = model->GetChild(i);
-    //   if(temp_base->HasType(gazebo::physics::Base::LINK))
-    //   {
-    //     gazebo::physics::LinkPtr temp_link = model->GetLink(temp_base->GetName());
-    //     double temp_link_mass = temp_link->GetInertial()->Mass();
-    //     model_cg_position.operator+=(temp_link->WorldCoGPose().Pos() * temp_link_mass);
-    //     total_link_mass = total_link_mass + temp_link_mass;
-    //   }
-    // }
-    // model_cg_position = model_cg_position/total_link_mass;
-
     double lift_drag_world_x = lift_force *(cos(-psi)*sin(alpha_aw) + sin(-psi)*cos(alpha_aw)) + drag_force * (sin(-psi) * sin(alpha_aw) - cos(alpha_aw) * cos(-psi));
     double lift_drag_world_y = -(lift_force * (cos(alpha_aw) * cos(-psi) - sin(alpha_aw) * sin(-psi)) + drag_force * (cos(alpha_aw) * sin(-psi) + sin(alpha_aw) * cos(-psi)));
 
     ignition::math::Vector3d lift_drag_world = ignition::math::Vector3d(lift_drag_world_x, lift_drag_world_y, 0);
 
-    link->AddForceAtWorldPosition(lift_drag_world,center_of_pressure);
+    ignition::math::Vector3d center_of_pressure_b_world = RotateX(center_of_pressure);
+    ignition::math::Vector3d center_of_pressure_n_world = ignition::math::Vector3d(center_of_pressure_b_world.X()*cos(psi), center_of_pressure_b_world.Y()*cos(psi), center_of_pressure_b_world.Z());
+    ignition::math::Vector3d center_of_pressure_world = this->model->WorldPose().Pos().operator+(center_of_pressure_n_world);
+
+    link->AddForceAtWorldPosition(lift_drag_world,center_of_pressure_world);
   }
 
   // Register this plugin with the simulator

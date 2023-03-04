@@ -36,6 +36,8 @@ namespace lift_drag_force_plugin
 
       std::string link_name;
 
+      std::string sub_world_topic;
+
       std::string joint_name;
 
       gazebo::physics::LinkPtr link;
