@@ -18,7 +18,8 @@ namespace lift_drag_force_plugin
     : fluid_density(1.225),
       center_of_pressure(ignition::math::Vector3d(0, 0, 0)),
       true_fluid_speed(0.0),
-      true_fluid_angle(0.0)
+      true_fluid_angle(0.0),
+      delta_s(0.0)
   {   
   }
 
@@ -28,15 +29,12 @@ namespace lift_drag_force_plugin
     this->model = _model;
     this->world = this->model->GetWorld();
     this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
-    this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
-    this->sub_world_topic = _sdf->GetElement("sub_world_topic")->Get<std::string>();
 
     std::string world_name = this->world->Name();
-    std::string topic_name = world_name + sub_world_topic;
+    std::string topic_name = world_name + "/true_wind";
     std::string model_name = this->model->GetName();
 
     this->link = model->GetLink(link_name);
-    this->joint = model->GetJoint(joint_name);
 
     node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_lift_drag_force_plugin");
 
@@ -75,6 +73,11 @@ namespace lift_drag_force_plugin
     {
       this->span = _sdf->Get<double>("span");
     }
+    if(_sdf->HasElement("joint_name"))
+    {
+      this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
+      this->joint = model->GetJoint(joint_name);
+    }
 
     // Listen to the update event. This event is broadcast every
     // simulation iteration.
@@ -104,8 +107,6 @@ namespace lift_drag_force_plugin
     double u_b = VelLinearB.X();
     double v_b = VelLinearB.Y();
 
-    
-
     double phi = PoseOrien.X();
     double psi = PoseOrien.Z();
 
@@ -118,14 +119,21 @@ namespace lift_drag_force_plugin
     double alpha_aw =  atan2(v_awv ,-v_awu);
     double v_aw = sqrt((v_awu*v_awu) + (v_awv*v_awv));
 
-    double delta_s = this->joint->Position(0);
+    if(this->joint_name != "")
+    {
+      this->delta_s = this->joint->Position(0);
+    }
 
     double angle_of_attack = alpha_aw - delta_s + init_actuator_angle;
 
     double cl = cla *  sin(2 * angle_of_attack);
     double lift_force = 0.5 * fluid_density * foil_area * v_aw * v_aw * cl;
 
-    double cdi = (cl * cl * foil_area)/(M_PI * span * span);
+    double cdi = 0;
+    if(this->span != 0)
+    {
+      cdi = (cl * cl * foil_area)/(M_PI * span * span);
+    }
     double cd = cda0 + (cda * sin(angle_of_attack) * sin(angle_of_attack)) + cdi;
     double drag_force = 0.5 * fluid_density * foil_area * v_aw  * v_aw * cd;
 
