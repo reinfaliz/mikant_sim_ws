@@ -240,10 +240,49 @@
     <cda>1.5</cda>
     <init_actuator_angle>0</init_actuator_angle>
     <span>1.8</span>
-    <center_of_pressure>0.02651 0 0.9</center_of_pressure>
+    <center_of_pressure>0.02651 0 -1.121021</center_of_pressure>
     <link_name>wingsail_1</link_name>
     <joint_name>wingsail_joint</joint_name>
     <sub_world_topic>true_wind</sub_world_topic>
+  </plugin>
+
+  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>1.225</fluid_density>
+    <foil_area>0.08064</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>1.8</span>
+    <center_of_pressure>-0.905849 0 -1.121021</center_of_pressure>
+    <link_name>tail_1</link_name>
+    <joint_name>tail_joint</joint_name>
+    <sub_world_topic>true_wind</sub_world_topic>
+  </plugin> -->
+
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>998.2</fluid_density>
+    <foil_area>0.0048</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>0.12</span>
+    <center_of_pressure>-0.455749 0 0.258929</center_of_pressure>
+    <link_name>rudder_1</link_name>
+    <joint_name>rudder_joint</joint_name>
+  </plugin>
+
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>998.2</fluid_density>
+    <foil_area>0.026568072</foil_area>
+    <cla>0</cla>
+    <cda0>0.12124</cda0>
+    <cda>0</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>0</span>
+    <center_of_pressure>0 0 0.146979</center_of_pressure>
+    <link_name>base_link</link_name>
   </plugin>
 
   <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
