@@ -14,18 +14,20 @@
 namespace heading_pid_controller_plugin
 {
 
+  HeadingPIDControllerPlugin::HeadingPIDControllerPlugin()
+    : p_gain(0.0),
+      i_gain(0.0),
+      d_gain(0.0),
+      desire_heading(0.0)
+  {   
+  }
+
   void HeadingPIDControllerPlugin::Load(gazebo::physics::ModelPtr _model, sdf::ElementPtr _sdf)
   {
 
     this->model = _model;
     this->world = this->model->GetWorld();
-    this->link_name = _sdf->GetElement("link_name")->Get<std::string>();
     this->joint_name = _sdf->GetElement("joint_name")->Get<std::string>();
-
-    std::string world_name = this->world->Name();
-    std::string model_name = this->model->GetName();
-    std::string sub_topic_name = world_name + "/" + model_name + "/" + sub_model_topic;
-    std::string pub_topic_name = world_name + "/" + model_name + "/" + joint_name + "/heading_pid_controller_plugin";
 
     if(_sdf->HasElement("p_gain"))
     {
@@ -47,6 +49,11 @@ namespace heading_pid_controller_plugin
     {
       this->desire_heading = _sdf->Get<double>("desire_heading");
     }
+
+    std::string world_name = this->world->Name();
+    std::string model_name = this->model->GetName();
+    std::string sub_topic_name = world_name + "/" + model_name + "/" + sub_model_topic;
+    std::string pub_topic_name = world_name + "/" + model_name + "/" + joint_name + "/heading_pid_controller_plugin";
 
     node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_heading_pid_controller_plugin");
     

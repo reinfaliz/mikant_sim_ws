@@ -314,10 +314,12 @@
   </plugin>
 
   <plugin name="heading_pid_controller_plugin" filename="libheading_pid_controller_plugin.so">
-    <p_gain>1</p_gain>
+    <joint_name>rudder_joint</joint_name>
+    <p_gain>10</p_gain>
     <i_gain>0</i_gain>
     <d_gain>0</d_gain>
-    <desire_heading>0</desire_heading>
+    <sub_model_topic>states</sub_model_topic>
+    <desire_heading>240</desire_heading>
   </plugin>
 
   <plugin name="three_dof_setting_plugin" filename="libthree_dof_setting_plugin.so">
