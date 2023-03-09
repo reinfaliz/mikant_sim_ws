@@ -39,14 +39,14 @@ namespace buoyancy_force_plugin
       double linear_drag;
 
       double link_volume;
+
+      double bottom_link_level;
       
       double fluid_density;
       
       double fluid_level;
 
       double displaced_volume;
-
-      ignition::math::Pose3d link_pose;
 
       double level;
 

@@ -40,6 +40,8 @@ namespace heading_pid_controller_plugin
 
       std::string joint_name;
 
+      std::string sub_model_topic;
+
       gazebo::physics::LinkPtr link;
 
       double p_gain;
@@ -65,6 +67,8 @@ namespace heading_pid_controller_plugin
       double r;
 
       double error;
+
+      double desire_heading;
       
       rclcpp::Node::SharedPtr node_;
 

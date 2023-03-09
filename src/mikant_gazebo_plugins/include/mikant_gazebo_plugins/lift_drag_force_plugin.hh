@@ -36,6 +36,8 @@ namespace lift_drag_force_plugin
 
       std::string link_name;
 
+      std::string sub_world_topic;
+
       std::string joint_name;
 
       gazebo::physics::LinkPtr link;
@@ -67,6 +69,8 @@ namespace lift_drag_force_plugin
       double true_fluid_speed;
 
       double true_fluid_angle;
+
+      double delta_s;
 
       // Pointer to the update event connection
       gazebo::event::ConnectionPtr updateConnection;

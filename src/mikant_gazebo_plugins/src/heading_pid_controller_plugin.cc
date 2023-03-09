@@ -24,7 +24,7 @@ namespace heading_pid_controller_plugin
 
     std::string world_name = this->world->Name();
     std::string model_name = this->model->GetName();
-    std::string sub_topic_name = world_name + "/" + model_name + "/sub_topic";
+    std::string sub_topic_name = world_name + "/" + model_name + "/" + sub_model_topic;
     std::string pub_topic_name = world_name + "/" + model_name + "/" + joint_name + "/heading_pid_controller_plugin";
 
     if(_sdf->HasElement("p_gain"))
@@ -39,8 +39,16 @@ namespace heading_pid_controller_plugin
     {
       this->d_gain = _sdf->Get<double>("d_gain");
     }
+    if(_sdf->HasElement("sub_model_topic"))
+    {
+      this->sub_model_topic = _sdf->GetElement("sub_model_topic")->Get<std::string>();
+    }
+    if(_sdf->HasElement("desire_heading"))
+    {
+      this->desire_heading = _sdf->Get<double>("desire_heading");
+    }
 
-    node_ = gazebo_ros::Node::make_shared(world_name+"_"+model_name+"_"+joint_name+"_heading_pid_controller_plugin");
+    node_ = gazebo_ros::Node::CreateWithArgs(world_name+"_"+model_name+"_"+joint_name+"_heading_pid_controller_plugin");
     
     // Set up a update event callback
     this->publisher_ = this->node_->create_publisher<std_msgs::msg::Float64>(pub_topic_name, 10);
@@ -69,7 +77,7 @@ namespace heading_pid_controller_plugin
   void HeadingPIDControllerPlugin::OnUpdate()
   {    
     
-    error = psi;
+    error = psi - desire_heading;
 
     auto Rudder_Angle = std_msgs::msg::Float64();
 

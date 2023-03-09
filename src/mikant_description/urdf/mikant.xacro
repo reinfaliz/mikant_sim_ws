@@ -6,14 +6,14 @@
 <xacro:include filename="$(find mikant_description)/urdf/mikant.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="0.4801025970624333 1.72740259340396e-08 0.10818569434527937" rpy="0 0 0"/>
-    <mass value="18.699840108992277"/>
+    <origin xyz="0.006253610225421689 1.727378522385176e-08 -0.13879329879411315" rpy="0 0 0"/>
+    <mass value="18.699840108992408"/>
     <inertia ixx="2.249717" iyy="1.199323" izz="3.24055" ixy="0.0" iyz="0.0" ixz="-0.004043"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find mikant_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find mrevolute_joint_setting_pluginikant_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
@@ -21,148 +21,206 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rudder_1">
+  <inertial>revolute_joint_setting_plugin
+    <origin xyz="-0.0038189411602249645 1.5860591751686856e-07 -0.10188560782233444" rpy="0 0 0"/>
+    <mass value="0.04761681769473842"/>
+    <inertia ixx="0.000232" iyy="0.000235" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="-1e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.455749 0.0 0.100079" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/rudder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.455749 0.0 0.100079" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/rudder_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
 <link name="wingsail_1">
   <inertial>
-    <origin xyz="-0.03888456386921996 -3.842744870047833e-09 0.9289866955696633" rpy="0 0 0"/>
-    <mass value="2.6756031588946767"/>
+    <origin xyz="-0.03888456383746852 -3.84274496744577e-09 0.9289866955866815" rpy="0 0 0"/>
+    <mass value="2.675603158894665"/>
     <inertia ixx="0.569143" iyy="0.77777" izz="0.209737" ixy="-0.0" iyz="-0.0" ixz="0.041393"/>
   </inertial>
   <visual>
-    <origin xyz="-0.5 0.0 -0.268" rpy="0 0 0"/>
+    <origin xyz="-0.026151 0.0 -0.021021" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/wingsail_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.5 0.0 -0.268" rpy="0 0 0"/>
+    <origin xyz="-0.026151 0.0 -0.021021" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/wingsail_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="rudder_1">
-  <inertial>
-    <origin xyz="-0.0038189411596242055 1.5860591750424096e-07 -0.10188560782233358" rpy="0 0 0"/>
-    <mass value="0.04761681769473878"/>
-    <inertia ixx="0.000232" iyy="0.000235" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="-1e-05"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.0181 0.0 -0.1469" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find mikant_description)/meshes/rudder_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.0181 0.0 -0.1469" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find mikant_description)/meshes/rudder_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
 <link name="tail_1">
   <inertial>
-    <origin xyz="-0.052965953278093614 -2.1573027652953112e-16 -0.31499999999999995" rpy="0 0 0"/>
+    <origin xyz="-0.052965953278093725 -4.2034391259948357e-16 0.31499999999999984" rpy="0 0 0"/>
     <mass value="0.06165736320097964"/>
-    <inertia ixx="0.002041" iyy="0.002093" izz="5.6e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    <inertia ixx="0.002041" iyy="0.002093" izz="5.6e-05" ixy="-0.0" iyz="0.0" ixz="0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.4 -0.0 -1.683" rpy="0 0 0"/>
+    <origin xyz="0.873849 -0.0 -0.806021" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/tail_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.4 -0.0 -1.683" rpy="0 0 0"/>
+    <origin xyz="0.873849 -0.0 -0.806021" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/tail_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
+
+<!-- <link name="left_propeller_1">
+  <inertial>
+    <origin xyz="0.00000001 0 -0.012700985794266928" rpy="0 0 0"/>
+    <mass value="0.009984288205615649"/>
+    <inertia ixx="3e-06" iyy="3e-06" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.179853 -0.35 0.298979" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/left_propeller_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.179853 -0.35 0.298979" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/left_propeller_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link> -->
 
 <link name="left_propeller_1">
   <inertial>
-    <origin xyz="-0.012700985794268038 -1.219700979104843e-08 -1.7478167808893108e-08" rpy="0 0 0"/>
-    <mass value="0.00998428820561576"/>
-    <inertia ixx="4e-06" iyy="3e-06" izz="3e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    <origin xyz="-0.012700985794266928 -1.2197008347758498e-08 -1.747816763542076e-08" rpy="0 0 0"/>
+    <mass value="0.009984288205615649"/>
+    <inertia ixx="3e-06" iyy="3e-06" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
   </inertial>
   <visual>
-    <origin xyz="-0.293996 -0.35 0.052" rpy="0 0 0"/>
+    <origin xyz="0.179853 -0.35 0.298979" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/left_propeller_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.293996 -0.35 0.052" rpy="0 0 0"/>
+    <origin xyz="0.179853 -0.35 0.298979" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/left_propeller_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
+
+<!-- <link name="right_propeller_1">
+  <inertial>
+    <origin xyz="0 0 -0.0127009857942679" rpy="0 0 0"/>
+    <mass value="0.009984288205615827"/>
+    <inertia ixx="3e-06" iyy="3e-06" izz="4e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.179853 0.35 0.298979" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/right_propeller_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.179853 0.35 0.298979" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find mikant_description)/meshes/right_propeller_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link> -->
 
 <link name="right_propeller_1">
   <inertial>
-    <origin xyz="-0.012700985794267539 -1.697251239551889e-07 1.7478171965290556e-08" rpy="0 0 0"/>
-    <mass value="0.009984288205615921"/>
-    <inertia ixx="4e-06" iyy="3e-06" izz="3e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    <origin xyz="-0.0127009857942679 -1.6972512478785617e-07 1.7478171021600986e-08" rpy="0 0 0"/>
+    <mass value="0.009984288205615827"/>
+    <inertia ixx="3e-06" iyy="3e-06" izz="4e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
   </inertial>
-  <visual>
-    <origin xyz="-0.293996 0.35 0.052" rpy="0 0 0"/>
+  <visual>revolute_joint_setting_plugin
+    <origin xyz="0.179853 0.35 0.298979" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/right_propeller_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.293996 0.35 0.052" rpy="0 0 0"/>
+    <origin xyz="0.179853 0.35 0.298979" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/right_propeller_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
-<joint name="wingsail_joint" type="continuous">
-  <origin xyz="0.5 0.0 0.268" rpy="0 0 0"/>
+<joint name="rudder_joint" type="continuous">
+  <origin xyz="-0.455749 0.0 -0.100079" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rudder_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+<!-- <joint name="wingsail_joint" type="continuous">
+  <origin xyz="0.026151 0.0 0.021021" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="wingsail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
 </joint>
 
-<joint name="rudder_joint" type="continuous">
-  <origin xyz="0.0181 0.0 0.1469" rpy="0 0 0"/>
+<joint name="tail_joint" type="continuous">
+  <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
+  <parent link="wingsail_1"/>
+  <child link="tail_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint> -->
+
+<joint name="wingsail_joint" type="revolute">
+  <origin xyz="0.026151 0.0 0.021021" rpy="0 0 0"/>
   <parent link="base_link"/>
-  <child link="rudder_1"/>
-  <axis xyz="0.0 0.0 -1.0"/>
+  <child link="wingsail_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
 </joint>
 
 <joint name="tail_joint" type="continuous">
-  <origin xyz="-0.9 0.0 1.415" rpy="0 0 0"/>
+  <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
   <parent link="wingsail_1"/>
   <child link="tail_1"/>
-  <axis xyz="0.0 0.0 1.0"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
 </joint>
 
 <joint name="left_propeller_joint" type="continuous">
-  <origin xyz="0.293996 0.35 -0.052" rpy="0 0 0"/>
+  <origin xyz="-0.179853 0.35 -0.298979" rpy="0 1.57079633 0"/>
   <parent link="base_link"/>
   <child link="left_propeller_1"/>
-  <axis xyz="1.0 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
 </joint>
 
 <joint name="right_propeller_joint" type="continuous">
-  <origin xyz="0.293996 -0.35 -0.052" rpy="0 0 0"/>
+  <origin xyz="-0.179853 -0.35 -0.298979" rpy="0 1.57079633 0"/>
   <parent link="base_link"/>
   <child link="right_propeller_1"/>
-  <axis xyz="1.0 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
 </joint>
 
 <gazebo>
@@ -172,6 +230,109 @@
     <linear_drag>1</linear_drag>
     <link_volume>0.042556812</link_volume>
     <link_name>base_link</link_name>
+  </plugin>
+
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>1.225</fluid_density>
+    <foil_area>0.675</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>1.8</span>
+    <center_of_pressure>0.02651 0 -1.121021</center_of_pressure>
+    <link_name>wingsail_1</link_name>
+    <joint_name>wingsail_joint</joint_name>
+    <sub_world_topic>true_wind</sub_world_topic>
+  </plugin>
+
+  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>1.225</fluid_density>
+    <foil_area>0.08064</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>1.8</span>
+    <center_of_pressure>-0.905849 0 -1.121021</center_of_pressure>
+    <link_name>tail_1</link_name>
+    <joint_name>tail_joint</joint_name>
+    <sub_world_topic>true_wind</sub_world_topic>
+  </plugin> -->
+
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>998.2</fluid_density>
+    <foil_area>0.0048</foil_area>
+    <cla>1.5</cla>
+    <cda0>0.1</cda0>
+    <cda>1.5</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>0.12</span>
+    <center_of_pressure>-0.455749 0 0.258929</center_of_pressure>
+    <link_name>rudder_1</link_name>
+    <joint_name>rudder_joint</joint_name>
+  </plugin>
+
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+    <fluid_density>998.2</fluid_density>
+    <foil_area>0.026568072</foil_area>
+    <cla>0</cla>
+    <cda0>0.12124</cda0>
+    <cda>0</cda>
+    <init_actuator_angle>0</init_actuator_angle>
+    <span>0</span>
+    <center_of_pressure>0 0 0.146979</center_of_pressure>
+    <link_name>base_link</link_name>
+  </plugin>
+
+  <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
+    <damping_coef>10</damping_coef>
+    <link_name>base_link</link_name>
+  </plugin>
+
+  <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+    <joint_setting_lower_limit>-12000</joint_setting_lower_limit>
+    <joint_setting_upper_limit>12000</joint_setting_upper_limit>
+    <joint_mode>1</joint_mode>
+    <joint_name>left_propeller_joint</joint_name>
+    <sub_joint_topic>left_propeller_controller</sub_joint_topic>
+  </plugin> -->
+
+  <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+    <joint_setting_lower_limit>-12000</joint_setting_lower_limit>
+    <joint_setting_upper_limit>12000</joint_setting_upper_limit>
+    <joint_mode>1</joint_mode>
+    <joint_name>right_propeller_joint</joint_name>
+    <sub_joint_topic>right_propeller_controller</sub_joint_topic>
+  </plugin> -->
+
+  <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+    <joint_setting_lower_limit>-1.57</joint_setting_lower_limit>
+    <joint_setting_upper_limit>1.57</joint_setting_upper_limit>
+    <joint_mode>0</joint_mode>
+    <joint_name>rudder_joint</joint_name>
+    <sub_joint_topic>heading_pid_controller_plugin</sub_joint_topic>
+  </plugin>
+
+  <plugin name="heading_pid_controller_plugin" filename="libheading_pid_controller_plugin.so">
+    <p_gain>1</p_gain>
+    <i_gain>0</i_gain>
+    <d_gain>0</d_gain>
+    <sub_model_topic>states</sub_model_topic>
+    <desire_heading>1.4</desire_heading>
+  </plugin>
+
+  <plugin name="three_dof_setting_plugin" filename="libthree_dof_setting_plugin.so">
+    <enable>true</enable>
+  </plugin>
+
+  <plugin name="sailboat_states_plugin" filename="libsailboat_states_plugin.so">
+    <rudder_joint_name>rudder_joint</rudder_joint_name>
+    <sail_joint_name>wingsail_joint</sail_joint_name>
+    <tail_joint_name>tail_joint</tail_joint_name>
+    <left_propeller_joint_name>left_propeller_joint</left_propeller_joint_name>
+    <right_propeller_joint_name>right_propeller_joint</right_propeller_joint_name>
+    <convert_to_deg>true</convert_to_deg>
   </plugin>
 </gazebo>
 

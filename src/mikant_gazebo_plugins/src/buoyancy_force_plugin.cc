@@ -13,9 +13,9 @@ namespace buoyancy_force_plugin
 
   BuoyancyForcePlugin::BuoyancyForcePlugin()
     : linear_drag(1),
+      bottom_link_level(0.0),
       fluid_density(998),
-      fluid_level(0),
-      link_pose(0, 0, 0, 0, 0, 0)
+      fluid_level(0)
   {   
   }
 
@@ -44,6 +44,10 @@ namespace buoyancy_force_plugin
     {
       this->linear_drag = _sdf->Get<double>("linear_drag");
     }
+    if(_sdf->HasElement("bottom_link_level"))
+    {
+      this->bottom_link_level = _sdf->Get<double>("bottom_link_level");
+    }
 
     
     // Listen to the update event. This event is broadcast every
@@ -53,13 +57,10 @@ namespace buoyancy_force_plugin
 
   // Called by the world update start event
   void BuoyancyForcePlugin::OnUpdate()
-  {    
-    this->link_pose = link->WorldPose();
-
-    this->level = this->link_pose.Z();
+  {
+    this->level = this->model->WorldPose().Pos().Z() - this->bottom_link_level;
     
     this->dif_level = this->fluid_level - this->level;
-
 
     // Check where is the water level at
     if(this->dif_level >= 0.2)
