@@ -79,10 +79,12 @@ namespace heading_pid_controller_plugin
     
     error = psi - desire_heading;
 
+    signal = p_gain*error;
+
     auto Rudder_Angle = std_msgs::msg::Float64();
 
     // Set the data for the message
-    Rudder_Angle.data = p_gain*error;
+    Rudder_Angle.data = signal;
     // Publish the message
     publisher_->publish(Rudder_Angle);
     

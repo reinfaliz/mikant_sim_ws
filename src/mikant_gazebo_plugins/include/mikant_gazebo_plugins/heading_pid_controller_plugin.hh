@@ -69,6 +69,8 @@ namespace heading_pid_controller_plugin
       double error;
 
       double desire_heading;
+
+      double signal;
       
       rclcpp::Node::SharedPtr node_;
 

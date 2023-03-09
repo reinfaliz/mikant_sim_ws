@@ -13,7 +13,7 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find mrevolute_joint_setting_pluginikant_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find mikant_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
@@ -26,7 +26,7 @@
 </link>
 
 <link name="rudder_1">
-  <inertial>revolute_joint_setting_plugin
+  <inertial>
     <origin xyz="-0.0038189411602249645 1.5860591751686856e-07 -0.10188560782233444" rpy="0 0 0"/>
     <mass value="0.04761681769473842"/>
     <inertia ixx="0.000232" iyy="0.000235" izz="4e-06" ixy="-0.0" iyz="0.0" ixz="-1e-05"/>
@@ -157,7 +157,7 @@
     <mass value="0.009984288205615827"/>
     <inertia ixx="3e-06" iyy="3e-06" izz="4e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
   </inertial>
-  <visual>revolute_joint_setting_plugin
+  <visual>
     <origin xyz="0.179853 0.35 0.298979" rpy="0 0 0"/>
     <geometry>
       <mesh filename="file://$(find mikant_description)/meshes/right_propeller_1.stl" scale="0.001 0.001 0.001"/>
@@ -185,7 +185,6 @@
   <child link="wingsail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
 </joint>
-
 <joint name="tail_joint" type="continuous">
   <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
   <parent link="wingsail_1"/>
@@ -318,8 +317,7 @@
     <p_gain>1</p_gain>
     <i_gain>0</i_gain>
     <d_gain>0</d_gain>
-    <sub_model_topic>states</sub_model_topic>
-    <desire_heading>1.4</desire_heading>
+    <desire_heading>0</desire_heading>
   </plugin>
 
   <plugin name="three_dof_setting_plugin" filename="libthree_dof_setting_plugin.so">
@@ -335,6 +333,5 @@
     <convert_to_deg>true</convert_to_deg>
   </plugin>
 </gazebo>
-
 
 </robot>
