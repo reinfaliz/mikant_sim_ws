@@ -74,7 +74,7 @@ namespace revolute_joint_setting_plugin
   {
     // Bound the joint setting
     double final_joint_setting = this->joint_setting;
-    // double final_joint_setting = 120;
+    // double final_joint_setting = -M_PI/6; // Used to test a fixed value
     if(final_joint_setting > this->joint_setting_upper_limit)
     {
       final_joint_setting = this->joint_setting_upper_limit;
@@ -87,6 +87,8 @@ namespace revolute_joint_setting_plugin
     // Set the joint setting
     if(this->joint_mode == 0)
     {
+      this->joint->SetLowerLimit(0,final_joint_setting);
+      this->joint->SetUpperLimit(0,final_joint_setting);
       this->joint->SetPosition(0,final_joint_setting,true);
     }
     else if(this->joint_mode == 1)
