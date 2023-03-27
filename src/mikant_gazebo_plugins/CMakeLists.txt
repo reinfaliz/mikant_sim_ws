@@ -96,6 +96,16 @@ target_include_directories(sailboat_states_plugin PUBLIC
 ament_target_dependencies(sailboat_states_plugin "gazebo_ros" "rclcpp")
 install(TARGETS sailboat_states_plugin DESTINATION share/${PROJECT_NAME})
 
+#sail_luffing_controller_plugin
+add_library(sail_luffing_controller_plugin SHARED src/sail_luffing_controller_plugin.cc)
+target_include_directories(sail_luffing_controller_plugin PUBLIC
+   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+   $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(sail_luffing_controller_plugin "gazebo_ros" "rclcpp")
+install(TARGETS sail_luffing_controller_plugin DESTINATION share/${PROJECT_NAME})
+
+
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
