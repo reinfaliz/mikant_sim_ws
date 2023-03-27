@@ -16,7 +16,9 @@
 namespace sail_luffing_controller_plugin
 {
   SailLuffingControllerPlugin::SailLuffingControllerPlugin()
-  :
+  : center_of_pressure(ignition::math::Vector3d(0, 0, 0))
+  
+  
   {
   }
 
@@ -64,12 +66,12 @@ namespace sail_luffing_controller_plugin
       	
 	
       	// Create a node handle for communication.
-      	node_ = gazebo_ros::Node::CreateWithArgs(<world_name>+'_'+<model_name>+'_'+<joint_name>+'_'+"sail_luffing_controller_plugin");
+      	node_ = gazebo_ros::Node::CreateWithArgs(world_name+'_'+model_name+'_'+joint_name+'_'+"sail_luffing_controller_plugin");
 
       	// Subscribe to the necessary topics.
-      	this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name1, 10,
+      	this->sub_1 = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name1, 10,
     	std::bind(&SailLuffingControllerPlugin::callbacksub, this, std::placeholders::_1));
-      	this->sub_ = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name2, 10,
+      	this->sub_2 = this->node_->create_subscription<std_msgs::msg::Float64MultiArray>(topic_name2, 10,
     	std::bind(&SailLuffingControllerPlugin::callbacksub, this, std::placeholders::_1));
 
       	// Advertise the output topic.
@@ -78,6 +80,27 @@ namespace sail_luffing_controller_plugin
       	
     	this->updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(std::bind(&SailLuffingControllerPlugin::OnUpdate, this));
   	}
+  	
+  	void SailLuffingControllerPlugin::callbacksub(const std_msgs::msg::Float64MultiArray::SharedPtr msg)
+  	{
+    		this->true_wind_angle = msg->data[0];
+    		this->true_wind_speed = msg->data[1];
+  	}
+  	
+  	void SailLuffingControllerPlugin::callbacksub(const std_msgs::msg::Float64MultiArray::SharedPtr msg)
+  	{
+    		this->x = msg->data[0];
+    		this->y = msg->data[1];
+    		this->phi = msg->data[2];
+    		this->psi = msg->data[3];
+    		this->u = msg->data[4];
+    		this->v = msg->data[5];
+    		this->p = msg->data[6];
+    		this->r = msg->data[7];
+  	}
+  	
+  	
+  	
 
     	void SailLuffingControllerPlugin::OnUpdate()
     	{
@@ -96,7 +119,7 @@ namespace sail_luffing_controller_plugin
       	// Calculate the alpha_aw value.
       	double vawu = v*cos(alpha_tw)-u*sin(alpha_tw);
       	double vawv = v*sin(alpha_tw)+u*cos(alpha_tw);
-      	double alpha_aw = arctan2(vawv,-vawu);
+      	double alpha_aw = atan2(vawv,-vawu);
 
       	// Check the saturation limits.
       	if (alpha_aw > max_sail_angle) {
