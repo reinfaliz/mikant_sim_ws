@@ -184,9 +184,9 @@
   <parent link="base_link"/>
   <child link="wingsail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
-</joint>
+</joint> -->
 
-<joint name="tail_joint" type="continuous">
+<!-- <joint name="tail_joint" type="continuous">
   <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
   <parent link="wingsail_1"/>
   <child link="tail_1"/>
@@ -198,7 +198,7 @@
   <parent link="base_link"/>
   <child link="rudder_1"/>
   <axis xyz="0.0 0.0 1.0"/>
-  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
+  <limit effort="0" velocity="0" lower="0" upper="0"/>
 </joint>
 
 <joint name="wingsail_joint" type="revolute">
@@ -206,15 +206,15 @@
   <parent link="base_link"/>
   <child link="wingsail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
-  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
+  <limit effort="0" velocity="0" lower="0" upper="0"/>
 </joint>
 
-<joint name="tail_joint" type="continuous">
+<joint name="tail_joint" type="revolute">
   <origin xyz="-0.9 0.0 0.785" rpy="0 0 0"/>
   <parent link="wingsail_1"/>
   <child link="tail_1"/>
   <axis xyz="0.0 -0.0 1.0"/>
-  <limit effort="0" velocity="0" lower="-1.57079633" upper="1.57079633"/>
+  <limit effort="0" velocity="0" lower="0" upper="0"/>
 </joint>
 
 <joint name="left_propeller_joint" type="continuous">
@@ -235,7 +235,7 @@
   <plugin name="buoyancy_force_plugin" filename="libbuoyancy_force_plugin.so">
     <fluid_density>998</fluid_density>
     <fluid_level>40.0</fluid_level>
-    <linear_drag>1</linear_drag>
+    <linear_drag>3</linear_drag>
     <link_volume>0.042556812</link_volume>
     <bottom_link_level>0.246979</bottom_link_level>
     <link_name>base_link</link_name>
@@ -271,7 +271,7 @@
 
   <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
     <fluid_density>998.2</fluid_density>
-    <foil_area>0.0048</foil_area>
+    <foil_area>0.048</foil_area>
     <cla>1.5</cla>
     <cda0>0.1</cda0>
     <cda>1.5</cda>
@@ -282,7 +282,7 @@
     <joint_name>rudder_joint</joint_name>
   </plugin>
 
-  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
     <fluid_density>998.2</fluid_density>
     <foil_area>0.026568072</foil_area>
     <cla>0</cla>
@@ -292,10 +292,10 @@
     <span>0</span>
     <center_of_pressure>0 0 0.146979</center_of_pressure>
     <link_name>base_link</link_name>
-  </plugin>
+  </plugin> -->
 
   <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
-    <damping_coef>10</damping_coef>
+    <damping_coef>0</damping_coef>
     <link_name>base_link</link_name>
   </plugin>
 
@@ -313,6 +313,42 @@
     <joint_mode>1</joint_mode>
     <joint_name>right_propeller_joint</joint_name>
     <sub_joint_topic>right_propeller_controller</sub_joint_topic>
+  </plugin> -->
+
+  <!-- <plugin name="heading_pid_controller_plugin" filename="libheading_pid_controller_plugin.so">
+    <joint_name>rudder_joint</joint_name>
+    <p_gain>-1</p_gain>
+    <i_gain>0</i_gain>
+    <d_gain>0</d_gain>
+    <sub_model_topic>states</sub_model_topic>
+    <desired_heading>1.57</desired_heading>
+  </plugin> -->
+
+  <!-- <plugin name="sail_luffing_controller_plugin" filename="libsail_luffing_controller_plugin.so">
+    <joint_name>wingsail_joint</joint_name>
+    <max_sail_angle>0.523598776</max_sail_angle>
+    <min_sail_angle>-0.523598776</min_sail_angle>
+    <center_of_pressure>0.02651 0 -1.121021</center_of_pressure>
+    <sub_model_topic>states</sub_model_topic>
+    <sub_world_topic>true_wind</sub_world_topic>
+  </plugin> -->
+
+  <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+    <joint_setting_lower_limit>-0.785398163</joint_setting_lower_limit>
+    <joint_setting_upper_limit>0.785398163</joint_setting_upper_limit>
+    <joint_mode>0</joint_mode>
+    <joint_name>rudder_joint</joint_name>
+    <sub_joint_topic>heading_pid_controller_plugin</sub_joint_topic>
+  </plugin> -->
+
+  <!-- <plugin name="revolute_joint_setting_plugin" filename="librevolute_joint_setting_plugin.so">
+    <joint_setting_lower_limit>-1.57</joint_setting_lower_limit>
+    <joint_setting_upper_limit>1.57</joint_setting_upper_limit>
+    <joint_mode>0</joint_mode>
+    <joint_name>wingsail_joint</joint_name>
+    <sub_joint_topic>sail_luffing_controller_plugin</sub_joint_topic>
+    <model_in_deg>true</model_in_deg>
+    <world_in_deg>false</world_in_deg>
   </plugin> -->
 
   <plugin name="three_dof_setting_plugin" filename="libthree_dof_setting_plugin.so">

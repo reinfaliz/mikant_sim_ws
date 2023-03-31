@@ -100,12 +100,12 @@ namespace lift_drag_force_plugin
   {
     ignition::math::Vector3d V = ignition::math::Vector3d(1, -1, -1);
     ignition::math::Vector3d Result = V * Ro;
-    return Result ;
+    return Result;
   }
 
   // Called by the world update start event
   void LiftDragForcePlugin::OnUpdate()
-  {    
+  {
     ignition::math::Vector3d PoseOrien = RotateX(this->model->WorldPose().Rot().Euler());
     ignition::math::Vector3d VelLinearB = RotateX(this->model->RelativeLinearVel());
     ignition::math::Vector3d VelAngularB = RotateX(this->model->RelativeAngularVel());
@@ -120,7 +120,7 @@ namespace lift_drag_force_plugin
     double r_b = VelAngularB.Z();
 
     double v_awu = true_fluid_speed*cos(true_fluid_angle - psi) - u_b + (r_b * center_of_pressure.Y());
-    double v_awv = true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z()); 
+    double v_awv = true_fluid_speed*sin(true_fluid_angle - psi)*cos(phi) - v_b - (r_b * center_of_pressure.X()) + (p_b * center_of_pressure.Z());
 
     double alpha_aw =  atan2(v_awv ,-v_awu);
     double v_aw = sqrt((v_awu*v_awu) + (v_awv*v_awv));
@@ -148,9 +148,9 @@ namespace lift_drag_force_plugin
 
     ignition::math::Vector3d lift_drag_world = ignition::math::Vector3d(lift_drag_world_x, lift_drag_world_y, 0);
 
-    ignition::math::Vector3d center_of_pressure_b_world = RotateX(center_of_pressure);
-    ignition::math::Vector3d center_of_pressure_n_world = ignition::math::Vector3d(center_of_pressure_b_world.X()*cos(psi), center_of_pressure_b_world.Y()*cos(psi), center_of_pressure_b_world.Z());
-    ignition::math::Vector3d center_of_pressure_world = this->model->WorldPose().Pos().operator+(center_of_pressure_n_world);
+    double center_of_pressure_xy_radius = sqrt(this->center_of_pressure.X()*this->center_of_pressure.X() + this->center_of_pressure.Y()*this->center_of_pressure.Y());
+    double center_of_pressure_xy_angle = atan2(this->center_of_pressure.Y(), this->center_of_pressure.X());
+    ignition::math::Vector3d center_of_pressure_world = RotateX(ignition::math::Vector3d(center_of_pressure_xy_radius*cos(center_of_pressure_xy_angle + psi), center_of_pressure_xy_radius*sin(center_of_pressure_xy_angle + psi), 0)).operator+(this->model->WorldPose().Pos());
 
     link->AddForceAtWorldPosition(lift_drag_world,center_of_pressure_world);
   }
