@@ -282,7 +282,7 @@
     <joint_name>rudder_joint</joint_name>
   </plugin>
 
-  <!-- <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
+  <plugin name="lift_drag_force_plugin" filename="liblift_drag_force_plugin.so">
     <fluid_density>998.2</fluid_density>
     <foil_area>0.026568072</foil_area>
     <cla>0</cla>
@@ -292,10 +292,10 @@
     <span>0</span>
     <center_of_pressure>0 0 0.146979</center_of_pressure>
     <link_name>base_link</link_name>
-  </plugin> -->
+  </plugin>
 
   <plugin name="yaw_damping_torque_plugin" filename="libyaw_damping_torque_plugin.so">
-    <damping_coef>0</damping_coef>
+    <damping_coef>0.2</damping_coef>
     <link_name>base_link</link_name>
   </plugin>
 
